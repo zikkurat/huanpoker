@@ -10,9 +10,12 @@ var gulp = require('gulp'),
 	livereload = require('gulp-livereload');//刷新浏览器
 //}}}
 
+source_path = 'source/';
+dest_path = 'g:/http/site/hunan_poker/';
+
 // less {{{
 gulp.task('less', function() {
-	gulp.src('source/files/*.less')
+	gulp.src(source_path + 'files/*.less')
 		.pipe(plumber())
 		.pipe(less())
 		//.pipe(min_css({compatibility:'ie7'}))
@@ -20,53 +23,53 @@ gulp.task('less', function() {
 		.pipe(rename(function(path) {
 			path.basename += '.min'
 		}))
-		.pipe(changed('g:/http/site/hunan_poker/files/'))
-		.pipe(gulp.dest('g:/http/site/hunan_poker/files/'))
+		.pipe(changed(dest_path + 'files/'))
+		.pipe(gulp.dest(dest_path+'files/'))
 		.pipe(livereload({auto:false}));
 });
 //}}}
 
 // html {{{
 gulp.task('html', function() {
-	gulp.src('source/*.html')
+	gulp.src(source_path + '*.html')
 		.pipe(plumber())
 		.pipe(min_html({
 			removeComments: true,
 			collapseWhitespace: true
 		}))
-		.pipe(changed('g:/http/site/hunan_poker/'))
-		.pipe(gulp.dest('g:/http/site/hunan_poker/'))
+		.pipe(changed(dest_path))
+		.pipe(gulp.dest(dest_path))
 		.pipe(livereload({auto:false}));
 });
 //}}}
 
 // uglify {{{
 gulp.task('uglify', function() {
-	gulp.src('source/files/*.js')
+	gulp.src(source_path + 'files/*.js')
 		.pipe(plumber())
 		.pipe(ugliry())
 		.pipe(rename(function(path) {
 			path.basename += '.min'
 		}))
-		.pipe(changed('g:/http/site/hunan_poker/files/'))
-		.pipe(gulp.dest('g:/http/site/hunan_poker/files/'))
+		.pipe(changed(dest_path + 'files/'))
+		.pipe(gulp.dest(dest_path + 'files/'))
 		.pipe(livereload({auto:false}));
 });
 //}}}
 
 gulp.task('imgs', function() {
-	gulp.src('source/img/*.{png,gif,jpg}')
-		.pipe(gulp.dest('g:/http/site/hunan_poker/img/'));
+	gulp.src(source_path + 'img/*.{png,gif,jpg}')
+		.pipe(gulp.dest(dest_path + 'img/'));
 });
 
 
 // wathc{{{
 gulp.task('watch', function() {
 	livereload.listen();
-	gulp.watch('source/files/*.less', ['less']);
-	gulp.watch('source/files/*.js', ['uglify']);
-	gulp.watch('source/**/*.html', ['html']);
-	gulp.watch('source/*.{png,gif,jpg}', ['imgs']);
+	gulp.watch(source_path + 'files/*.less', ['less']);
+	gulp.watch(source_path + 'files/*.js', ['uglify']);
+	gulp.watch(source_path + '**/*.html', ['html']);
+	gulp.watch(source_path + '*.{png,gif,jpg}', ['imgs']);
 });
 //}}}
 
