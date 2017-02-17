@@ -1,7 +1,7 @@
 // 载入插件 {{{
 var gulp = require('gulp'),
 	less = require('gulp-less'),//less编译
-	min_css = require('gulp-minify-css'),//压缩css
+	clean_css = require('gulp-clean-css'); //压缩css
 	min_html = require('gulp-htmlmin'),
 	plumber = require('gulp-plumber');//防止watch出错退出
 	rename = require('gulp-rename'),//重命名
@@ -11,15 +11,15 @@ var gulp = require('gulp'),
 //}}}
 
 source_path = 'source/';
-dest_path = 'g:/http/site/hunan_poker/';
+//dest_path = 'g:/http/site/hunan_poker/';
+dest_path = 'e:/http/sites/hunanpoker/';
 
 // less {{{
 gulp.task('less', function() {
 	gulp.src(source_path + 'files/*.less')
 		.pipe(plumber())
 		.pipe(less())
-		//.pipe(min_css({compatibility:'ie7'}))
-		.pipe(min_css())
+		.pipe(clean_css())
 		.pipe(rename(function(path) {
 			path.basename += '.min'
 		}))
@@ -57,11 +57,12 @@ gulp.task('uglify', function() {
 });
 //}}}
 
+// imgs {{{
 gulp.task('imgs', function() {
 	gulp.src(source_path + 'img/*.{png,gif,jpg}')
 		.pipe(gulp.dest(dest_path + 'img/'));
 });
-
+//}}}
 
 // wathc{{{
 gulp.task('watch', function() {
