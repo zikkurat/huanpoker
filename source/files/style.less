@@ -13,6 +13,7 @@
 * html .group{height:1%;}
 
 div,p,ul,li,ol,form,h1,h2,h3,h4{margin:0;padding:0;list-style:none;}
+.svgs{display:none;}
 .mb{border-bottom:1px solid @main;}
 body{margin:0;padding:15vw 0 15vw 0;background-color:@white;color:@color;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:5vw;text-align:center;}
 body.darken{background-color:lighten(@black,15%);color:@white;}
@@ -23,26 +24,52 @@ body.darken{background-color:lighten(@black,15%);color:@white;}
 .btns{padding:5vw 0;text-align:center;.btn{margin-bottom:5vw;}.btn:last-child{margin:0;}}
 .btn{width:80%;height:18vw;line-height:18vw;display:inline-block;background-color:@main;color:@white;font-size:7vw;border-radius:2vw;text-decoration:none;&:hover{background-color:lighten(@main,10%);}img{width:8vw;height:8vw;margin-right:2vw;display:inline;vertical-align:middle;}}
 
-.agent-list{
-	h1{
-		height:20vw;
-		line-height:20vw;
-		font-style:normal;
-		text-align:left;
-		border-bottom:1px solid @main;
-		font-size:7vw;
-		img{width:16vw;height:16vw;margin:2vw 2vw 0 2vw;border-radius:2vw;vertical-align:middle;float:left;}
-		span{margin-right:3vw;}
-		output{color:@main;}
-		em{
-			width:10vw;
-			height:10vw;
-			margin:5vw 2vw 0 0;
-			display:block;
-			float:right;
-			border:1px solid @black;
-			background:url('@{url}add.svg') no-repeat center center;
+.agent-list{article{border-bottom:1px solid @main;}section{background-color:lighten(@blue,50%);}h1{height:20vw;line-height:20vw;text-align:left;font-weight:normal;font-size:7vw;color:@black;img{width:16vw;height:16vw;margin:2vw 2vw 0 2vw;border-radius:2vw;vertical-align:middle;float:left;}span{margin-right:3vw;}output{color:@main;}svg{width:10vw;height:10vw;margin:5vw 2vw 0 0;fill:@main;border:1px solid @main;border-radius:50%;background-color:@white;float:right;}}h2{height:15vw;line-height:15vw;text-align:left;font-size:5vw;font-weight:normal;border-top:1px solid @blue;span{width:38%;margin:0 5vw 0 2vw;display:inline-block;color:@blue;}output{color:@main;}em{font-size:4vw;color:@main;font-style:normal;margin-left:2vw;}svg{width:8vw;height:8vw;margin:3.5vw 3vw 0 0;fill:@blue;border:1px solid @blue;border-radius:50%;background-color:@white;float:right;}}ul{background-color:@grayback;li{height:14vw;line-height:14vw;border-top:1px solid @boxborder;text-align:left;}img{width:12vw;height:12vw;margin:1vw 2vw 0 2vw;border-radius:2vw;vertical-align:middle;float:left;}span{width:40%;white-space:nowrap;float:left;}output{color:@main;float:right;margin-right:4vw;white-space:nowrap;}}}
+.search-box{padding:5vw 0;background-color:@grayback;border-bottom:1px solid @main;input{width:79%;height:15vw;margin:0 0 5vw 0;padding:0;font-size:7vw;text-align:center;background:@white url('@{url}search.svg') no-repeat 3vw center;background-size:10vw;border:1px solid @inputborder;border-radius:0;-webkit-appearance:none;&:focus{border:1px solid @main;box-shadow:0 0 1vw fadeout(@main,40%);}}}
+.search-results-add-agent{
+	p{font-size:5vw;padding:7vw;color:@main;}
+	h2{
+		height         : 16vw;
+		padding-bottom : 5vw;
+		font-size      : 6vw;
+		font-weight    : normal;
+		text-align     : left;
+		border-bottom  : 1px solid @boxborder;
+		img{width:16vw;height:16vw;margin:0 2vw 0 10vw;border-radius:2vw;vertical-align:middle;float:left;}
+		button{
+			width            : 25vw;
+			height           : 10vw;
+			margin           : 3vw 10vw 0 0;
+			border           : 0;
+			outline:none;
+			background-color : @blue;
+			color            : @white;
+			font-size        : 4vw;
+			border-radius    : 2vw;
+			float            : right;
+			&:hover{
+				background-color:lighten(@blue,20%);
+			}
 		}
+		span{margin-right:2vw;float:left;}
+		code{display:block;color:@main;}
 	}
+	strong{padding:3vw;display:block;font-weight:normal;color:@blue;}
+	figure{margin:0;color:@black;img{width:20vw;height:20vw;border-radius:2vw;}}
+	em{font-style:normal;}
+	section p{text-align:left;color:@color;font-size:5vw;}
 }
 
+.dialog{
+	background-color : fadeout(@black,15%);
+	width            : 100%;
+	height           : 100%;
+	position         : fixed;
+	top              : 0;
+	left             : 0;
+	z-index          : 999;
+	.box{width:80vw;margin:-25vw 0 0 -40vw;background-color:@white;border-radius:3vw;position:absolute;left:50%;top:50%;}
+	figure{height:15vw;line-height:15vw;clear:both;display:block;margin:0;img{width:15vw;height:15vw;margin-right:2vw;border-radius:2vw;display:inline;vertical-align:middle;}figcaption{display:inline;}}
+	.info{margin-bottom:5vw;background-color:@main;border-radius:3vw 3vw 0 0;padding:5vw 0;display:block;color:@white;font-size:7vw;}
+	.degist{padding:5vw;display:block;font-size:4vw;}
+}
